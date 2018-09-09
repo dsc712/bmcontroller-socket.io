@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Socket App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<h1>socket app</h1>
+
+<a href="/enroll" class="btn btn-primary">enroll</a>
+
+<ul class="list-group" id="connection-list">
+
+</ul>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io('/admin');
+    const lists = document.getElementById('connection-list');
+    const addConnection = id => {
+        var item = `<li class="list-group-item">${id}</li>`;
+        lists.innerHTML += item;
+    }
+
+    socket.on('new connection', (id) => {
+        addConnection(id);
+    })
+</script>
+</body>
+</html>
